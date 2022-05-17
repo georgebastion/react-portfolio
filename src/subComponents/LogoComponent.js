@@ -13,9 +13,9 @@ top: 2rem;
 z-index:3;
 
 `
-const LogoComponent = () => {
+const LogoComponent = (props) => {
     return (
-        <Logo>
+        <Logo color= {props.theme}>
             Bastion
         </Logo>
     );

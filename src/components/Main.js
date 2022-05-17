@@ -1,10 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import LogoComponent from '../subComponents/LogoComponent';
 import PowerButton from '../subComponents/PowerButton';
 import SocialIcons from '../subComponents/SocialIcons';
 import { NavLink } from 'react-router-dom';
 import { YinYang } from './AllSvgs';
+import {useState} from 'react';
+import Intro from './Intro'
 
 const MainContainer =styled.div`
 background: ${props=>props.theme.body};
@@ -25,7 +27,7 @@ padding: 2rem;
 `
 
 const Contact = styled(NavLink)`
-color:${props=>props.theme.text};
+color:${props=>props.click ? props.theme.body : props.theme.text};
 position: absolute;
 right:calc(1rem + 2vw);
 text-decoration:none;
@@ -34,7 +36,7 @@ z-index: 3;
 `
 
 const Blog = styled(NavLink)`
-color:${props=>props.theme.text};
+color:${props=>props.click ? props.theme.body : props.theme.text};
 position: absolute;
 right:calc(1rem + 2vw);
 top: 50%;
@@ -44,7 +46,7 @@ z-index: 3;
 
 `
 const Work = styled(NavLink)`
-color:${props=>props.theme.text};
+color:${props=>props.click ? props.theme.body : props.theme.text};
 position: absolute;
 left:calc(1rem + 2vw);
 top: 50%;
@@ -64,46 +66,74 @@ justify-content:space-evenly;
 z-index:1;
 `
 const About= styled(NavLink)`
-color:${props=>props.theme.text};
+color:${props=>props.click ? props.theme.body : props.theme.text};
 text-decoration:none;
 z-index:1;
 
 `
 const Skills= styled(NavLink)`
-color:${props=>props.theme.text};
+color:${props=>props.click ? props.theme.body : props.theme.text};
 text-decoration:none;
 z-index:1;
 `
-
+const rotate = keyframes`
+from {
+    transform:rotate(0);
+}
+to {
+    transform:rotate(360deg);
+}
+`
 const Center = styled.button`
 position:absolute;
 display: flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-left:50%;
-top:50%;
+left:${props=>props.click ? '92%' : '50%'};
+top:${props=>props.click ? '85%' : '50%'};
 transform:translate(-50%,-50%);
 background-color:transparent;
 border:none;
 outline:none;
+transition: all 2s ease;
+
+&>:first-child{
+    animation:${rotate} infinite .3s linear;
+}
 
 &>:last-child{
+    display: ${props=>props.click ? 'none' : 'inline-block'};
     padding:1rem;
 }
 
 
 `
+const DarkDiv = styled.div`
+position: absolute;
+top: 0;
+background-color: #000;
+bottom: 0;
+right: 50%;
+width: ${props => props.click ? '50%' : '0%'};
+height: ${props => props.click ? '100%' : '0%'};
+z-index:1;
+transition: height 0.5s ease, width 1s ease 0.5s;
+`   
 const Main =()=> {
+    const [click, setClick]=useState(false);
+    const handleClick = () => setClick(!click);
+
     return (
         <MainContainer>
             <Container>
-                <PowerButton/>
-                <LogoComponent/>
-                <SocialIcons />
-
-                <Center>
-                    <YinYang width={150} heigh={150} fill='currentColor'/>
+                <DarkDiv click={click}/>
+                <PowerButton />
+                <LogoComponent theme={click ? 'dark' : 'light'}/>
+                <SocialIcons theme={ click ? 'dark':'light'}/>
+                
+                <Center click={click}>
+                    <YinYang onClick={()=>handleClick()} width={click ? 120:200} heigh={click?120:200} fill='currentColor'/>
                     <span>Click me</span>
                 </Center>
                 <Contact target="_blank" to={{pathname:"mailto:georgejacob437@gmail.com"}}>
@@ -111,23 +141,23 @@ const Main =()=> {
                         Say hi...
                     </h2>
                 </Contact>
-                <Blog target="_blank" to='/blog'>
+                <Blog to='/blog' >
                     <h2>
                         Blog
                     </h2>
                 </Blog>
-                <Work target="_blank" to='/work'>
+                <Work to='/work' click={click}>
                     <h2>
                         Work
                     </h2>
                 </Work>
                 <BottomBar>
-                    <About target="_blank" to='/about'>
+                    <About to='/about' click={click}>
                         <h2>
                             About
                         </h2>
                     </About>
-                    <Skills target="_blank" to='/skills'>
+                    <Skills to='/skills' >
                         <h2>
                             Skills
                         </h2>
@@ -135,6 +165,7 @@ const Main =()=> {
                 </BottomBar>
 
             </Container>
+            {click ? <Intro click={click}/> : null}
         </MainContainer>
 
     );
