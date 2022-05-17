@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { YinYang } from './AllSvgs';
 import {useState} from 'react';
 import Intro from './Intro'
+import { motion } from 'framer-motion';
 
 const MainContainer =styled.div`
 background: ${props=>props.theme.body};
@@ -131,36 +132,46 @@ const Main =()=> {
                 <PowerButton />
                 <LogoComponent theme={click ? 'dark' : 'light'}/>
                 <SocialIcons theme={ click ? 'dark':'light'}/>
-                
+                  
                 <Center click={click}>
                     <YinYang onClick={()=>handleClick()} width={click ? 120:200} heigh={click?120:200} fill='currentColor'/>
                     <span>Click me</span>
                 </Center>
                 <Contact target="_blank" to={{pathname:"mailto:georgejacob437@gmail.com"}}>
-                    <h2>
+                    <motion.h2 
+                    whileHover={{scale: 1.1}}
+                whileTap={{scale: 0.9}}>
                         Say hi...
-                    </h2>
+                    </motion.h2>
                 </Contact>
                 <Blog to='/blog' >
-                    <h2>
+                    <motion.h2
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}>
                         Blog
-                    </h2>
+                    </motion.h2>
                 </Blog>
                 <Work to='/work' click={click}>
-                    <h2>
+                    <motion.h2
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}>
                         Work
-                    </h2>
+                    </motion.h2>
                 </Work>
                 <BottomBar>
                     <About to='/about' click={click}>
-                        <h2>
+                        <motion.h2
+                        whileHover={{scale: 1.1}}
+                        whileTap={{scale: 0.9}}>
                             About
-                        </h2>
+                        </motion.h2>
                     </About>
                     <Skills to='/skills' >
-                        <h2>
+                        <motion.h2
+                        whileHover={{scale: 1.1}}
+                        whileTap={{scale: 0.9}}>
                             Skills
-                        </h2>
+                        </motion.h2>
                     </Skills>
                 </BottomBar>
 
