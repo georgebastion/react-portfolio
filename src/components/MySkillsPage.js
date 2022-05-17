@@ -90,7 +90,7 @@ function MySkillsPage(props) {
                 <LogoComponent theme='light'/>
                 <SocialIcons theme='light'/>
                 <PowerButton />
-                <ParticleComponent />
+                <ParticleComponent theme='light'/>
 
                 <Main>
                     <Title>
