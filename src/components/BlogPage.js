@@ -43,6 +43,18 @@ grid-template-columns: repeat(2, minmax(calc(10rem + 15vw), 1fr));
 grid-gap: calc(1rem + 2vw);
 `
 
+const Container1 ={
+    hidden:{opacity:0},
+    show:{
+        opacity:1,
+
+        transition:{
+            staggerChildren:0.5,
+            duration:0.5,
+        }
+    }
+}
+
 function BlogPage(props) {
     const [numbers, setNumbers] = useState(0);
 
@@ -52,7 +64,11 @@ function BlogPage(props) {
     }, [])
 
     return (
-        <MainContainer>
+        <MainContainer
+        variants={Container1}
+        initial='hidden'
+        animate='show'
+        exit={{opacity:0, transition:0.5}}>
             <Container>
                 <LogoComponent/>
                 <PowerButton/>

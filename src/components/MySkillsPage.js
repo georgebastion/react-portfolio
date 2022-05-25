@@ -10,7 +10,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from '../subComponents/ParticleComponent';
-
+import {SoundBar} from '../subComponents/SoundBar'
 
 
 const Box=styled.div`
@@ -90,6 +90,8 @@ function MySkillsPage(props) {
                 <LogoComponent theme='light'/>
                 <SocialIcons theme='light'/>
                 <PowerButton />
+                
+                
                 <ParticleComponent theme='light'/>
 
                 <Main>
@@ -123,7 +125,7 @@ function MySkillsPage(props) {
                 </Main>
                 <Main>
                     <Title>
-                        <Develope width={40} height={40} /> Frontend Developer
+                        <Develope width={40} height={40} /> Mern Stack Developer
                     </Title>
                     <Description>
                     I value business or brand for which i'm creating, thus i enjoy bringing new ideas to life.
@@ -131,15 +133,10 @@ function MySkillsPage(props) {
                     <Description>
                     <strong>Skills</strong>
                     <p>
-                    Html, Css, Js, React, Redux, Sass, Bootstrap, Tailwind, Firebase etc.
+                    Html, Css, Js, TypeScript, React, Redux, Sass, Bootstrap, Tailwind, Firebase etc.
                     </p>
                     </Description>
-                    <Description>
-                    <strong>Tools</strong>
-                    <p>
-                    VScode, Github, Codepen etc.
-                    </p>
-                    </Description>
+            
 
                 </Main>
 

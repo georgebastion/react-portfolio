@@ -8,6 +8,8 @@ import { YinYang } from './AllSvgs';
 import {useState} from 'react';
 import Intro from './Intro'
 import { motion } from 'framer-motion';
+import Button from '../subComponents/Button';
+
 
 const MainContainer =styled.div`
 background: ${props=>props.theme.body};
@@ -97,10 +99,10 @@ transform:translate(-50%,-50%);
 background-color:transparent;
 border:none;
 outline:none;
-transition: all 2s ease;
+transition: all 3s ease;
 
 &>:first-child{
-    animation:${rotate} infinite .3s linear;
+    animation:${rotate} infinite 3s linear;
 }
 
 &>:last-child{
@@ -108,6 +110,13 @@ transition: all 2s ease;
     padding:1rem;
 }
 
+
+`
+const Btn= styled(motion.div)`
+display:flex;
+z-index:1;
+text-decoration:none;
+color:${props=>props.click ? props.theme.body : props.theme.text};
 
 `
 const DarkDiv = styled.div`
@@ -130,49 +139,74 @@ const Main =()=> {
             <Container>
                 <DarkDiv click={click}/>
                 <PowerButton />
+        
                 <LogoComponent theme={click ? 'dark' : 'light'}/>
                 <SocialIcons theme={ click ? 'dark':'light'}/>
-                  
+              
                 <Center click={click}>
                     <YinYang onClick={()=>handleClick()} width={click ? 120:200} heigh={click?120:200} fill='currentColor'/>
                     <span>Click me</span>
                 </Center>
-                <Contact target="_blank" to={{pathname:"mailto:georgejacob437@gmail.com"}}>
+                <Contact  to='/contact'>
                     <motion.h2 
+                    initial={{
+                        y:-200,
+                        transition:{type:'spring', duration:1.5,delay:1}
+                    }}
+                    animate={{
+                        y:0,
+                        transition:{type:'spring', duration:1.5,delay:1}
+                    }}
                     whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}>
-                        Say hi...
+                        Contact Me
                     </motion.h2>
                 </Contact>
-                <Blog to='/blog' >
-                    <motion.h2
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}>
-                        Blog
-                    </motion.h2>
-                </Blog>
+                
                 <Work to='/work' click={click}>
                     <motion.h2
+                    
+                    initial={{
+                        y:-200,
+                        transition:{type:'spring', duration:1.5,delay:1}
+                    }}
+                    animate={{
+                        y:0,
+                        transition:{type:'spring', duration:1.5,delay:0}
+                    }}
                     whileHover={{scale: 1.1}}
                     whileTap={{scale: 0.9}}>
                         Work
                     </motion.h2>
                 </Work>
                 <BottomBar>
-                    <About to='/about' click={click}>
-                        <motion.h2
+                    <Btn
+                        initial={{
+                            y:200,
+                            transition:{type:'spring', duration:1.5,delay:1}
+                        }}
+                        animate={{
+                            y:0,
+                            transition:{type:'spring', duration:1.5,delay:0}
+                        }}
                         whileHover={{scale: 1.1}}
                         whileTap={{scale: 0.9}}>
-                            About
-                        </motion.h2>
-                    </About>
-                    <Skills to='/skills' >
-                        <motion.h2
+                            <Button text='About' to='/about' bcolor={click?'white':'black'} color={click?'black':'white'} bgcolor={click?'white':'black'}/>
+                        </Btn>
+                    
+                    <Btn
+                        initial={{
+                            y:200,
+                            transition:{type:'spring', duration:1.5,delay:1}
+                        }}
+                        animate={{
+                            y:0,
+                            transition:{type:'spring', duration:1.5,delay:0}
+                        }}
                         whileHover={{scale: 1.1}}
                         whileTap={{scale: 0.9}}>
-                            Skills
-                        </motion.h2>
-                    </Skills>
+                            <Button bcolor='black' color='white' bgcolor='black' text='Skills' to='/skills'/>
+                    </Btn>
                 </BottomBar>
 
             </Container>

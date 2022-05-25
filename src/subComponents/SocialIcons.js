@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { Facebook, Github, Twitter, YouTube } from '../components/AllSvgs'
+import { Facebook, Github, Twitter, Instagram } from '../components/AllSvgs'
 import {darkTheme} from '../components/Themes'
 import { motion } from 'framer-motion'
+import { animate } from 'tsparticles/Utils';
 
 const Icons = styled.div`
-display: flex;
 flex-direction: column;
 align-items: center;
 
@@ -32,26 +32,30 @@ background-color: ${props => props.color === 'dark' ? darkTheme.text : darkTheme
 const SocialIcons = (props) => {
     return (
         <Icons>
-            <div>
-                <NavLink to="/">
+            
+            <motion.div initial={{transform:'scale(0)'}} animate={{scale:[0,1,1.5,1]}} transition={{type:'spring', duration:1.5,delay:1}}>
+                <NavLink target="_blank"   to={{pathname:"https://github.com/georgebastion"}}>
                     <Github width={25} height={25} fill={props.theme === "dark" ? darkTheme.text  : darkTheme.body  } />
                 </NavLink>
-            </div>
-            <div>
-                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://twitter.com/code_bucks"}}>
+            </motion.div>
+            
+            <motion.div initial={{transform:'scale(0)'}} animate={{scale:[0,1,1.5,1]}} transition={{type:'spring', duration:1.5,delay:1.2}}>
+                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://twitter.com/georgiebastion"}}>
                     <Twitter width={25} height={25} fill={props.theme === "dark" ? darkTheme.text  : darkTheme.body  } />
                 </NavLink>
-            </div>
-            <div>
-                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://facebook.com/codebucks27"}}>
+            </motion.div>
+            
+            <motion.div initial={{transform:'scale(0)'}} animate={{scale:[0,1,1.5,1]}} transition={{type:'spring', duration:1.5,delay:1.4}}>
+                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://facebook.com/georgiebastion"}}>
                     <Facebook width={25} height={25} fill={props.theme === "dark" ? darkTheme.text  : darkTheme.body  } />
                 </NavLink>
-            </div>
-            <div>
-                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://youtube.com"}}>
-                    <YouTube width={25} height={25} fill={props.theme === "dark" ? darkTheme.text  : darkTheme.body  } />
+            </motion.div>
+            
+            <motion.div initial={{transform:'scale(0)'}} animate={{scale:[0,1,1.5,1]}} transition={{type:'spring', duration:1.5,delay:1.6}}>
+                <NavLink style={{color:'inherit'}}  target="_blank"   to={{pathname:"https://instagram.com/georgiebastion"}}>
+                    <Instagram width={25} height={25} fill={props.theme === "dark" ? darkTheme.text  : darkTheme.body  } />
                 </NavLink>
-            </div>
+            </motion.div>
             <Line color={props.theme}
             initial={
                 {
